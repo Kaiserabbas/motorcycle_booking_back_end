@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_18_042558) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_18_182018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_042558) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "visible"
     t.index ["chassisNumber"], name: "index_motorcycles_on_chassisNumber"
   end
 
@@ -34,6 +35,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_18_042558) do
     t.bigint "motorcycle_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date"
+    t.string "city"
     t.index ["motorcycle_id"], name: "index_reservations_on_motorcycle_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
