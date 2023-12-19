@@ -8,9 +8,11 @@ class MotorcyclesController < ApplicationController
   def create; end
 
   def destroy
-    if Motorcycle.destroy(params[:id])
-       return render json:{success:true,message:"Removed Successfully!"}
+    if Motorcycle.exists?(params[:id])
+      Motorcycle.destroy(params[:id])
+      render json:{success:true,message:"Removed Successfully!"}
+    elsif
+      render json:{error:true,message:"Ups! could not find motorcycle with this id #{params[:id]}"}
     end
-    return render json:{error:true,message:"Ups! Could not Remove the Motorcycle!"}
   end
 end
