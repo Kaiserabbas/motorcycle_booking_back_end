@@ -1,6 +1,7 @@
 class MotorcyclesController < ApplicationController
   def index
     @motorcycle = Motorcycle.all
+    render json: { success: true, data: @motorcycle }
   end
 
   def show; end

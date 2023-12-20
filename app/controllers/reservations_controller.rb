@@ -1,7 +1,10 @@
 class ReservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
-  def index; end
+  def index
+    @reservations = Reservation.all
+    render json: { success: true, data: @reservations }
+  end
 
   def show; end
 
