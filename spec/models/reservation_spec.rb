@@ -23,29 +23,27 @@ RSpec.describe Reservation, type: :model do
 
   context 'with Valid params' do
     it 'Should save a new Reservation wit valid params' do
-        
-       user=User.create(name:"Gra",email:"gra@gmail.com",role:"adm");
+      user = User.create(name: 'Gra', email: 'gra@gmail.com', role: 'adm')
 
-       motorcycle = Motorcycle.new
-       motorcycle.name = 'Vespa'
-       motorcycle.model = 'V2018'
-       motorcycle.color = 'Red'
-       motorcycle.chassisNumber = '2023RV15'
-       motorcycle.brand = 'Vespa'
-       motorcycle.bookingPricePerHour = 200
-       motorcycle.price = 2000
-       motorcycle.save
+      motorcycle = Motorcycle.new
+      motorcycle.name = 'Vespa'
+      motorcycle.model = 'V2018'
+      motorcycle.color = 'Red'
+      motorcycle.chassisNumber = '2023RV15'
+      motorcycle.brand = 'Vespa'
+      motorcycle.bookingPricePerHour = 200
+      motorcycle.price = 2000
+      motorcycle.save
 
       reservation = Reservation.new
       reservation.duration = 48
-      reservation.total = motorcycle.bookingPricePerHour*reservation.duration
+      reservation.total = motorcycle.bookingPricePerHour * reservation.duration
       reservation.user = user
-      reservation.motorcycle =motorcycle
-      reservation.city="Luanda"
-      reservation.date=Date.today
+      reservation.motorcycle = motorcycle
+      reservation.city = 'Luanda'
+      reservation.date = Date.today
       reservation.save
       expect(reservation).to be_valid
     end
   end
-
 end
