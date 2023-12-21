@@ -4,7 +4,7 @@ class Api::V1::ReservationsController < ApplicationController
 
   def index
     @reservations = Reservation.all
-    if @reservations.size>0
+    if @reservations.size > 0
       authorize! :read, @reservations
       render json: { success: true, data: @reservations }, status: :ok
     else
@@ -14,7 +14,7 @@ class Api::V1::ReservationsController < ApplicationController
 
   def show
     if Reservation.exists?(params[:id])
-      @reservation=Reservation.find(params[:id])
+      @reservation = Reservation.find(params[:id])
       authorize! :read, @reservation
       render json: { success: true, reservation: @reservation }, status: :ok
     end
@@ -22,7 +22,7 @@ class Api::V1::ReservationsController < ApplicationController
 
   def create
     reservation = Reservation.new(reservation_params)
-    reservation.user = session[:current_user] 
+    reservation.user = session[:current_user]
     authorize! :create, reservation
     if reservation.save
       render json: { success: true, message: 'Created Successfully!😁' }, status: :created

@@ -3,7 +3,6 @@ class Api::V1::UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
-    puts params[:user]
     @user = User.new(user_params)
 
     if @user.save

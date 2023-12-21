@@ -5,7 +5,7 @@ class Api::V1::MotorcyclesController < ApplicationController
   def index
     @motorcycles = Motorcycle.all
     authorize! :read, @motorcycles
-    if @motorcycles.size>0
+    if @motorcycles.size > 0
     render json: { success: true, data: @motorcycles }, status: :ok
     else
       render json: { success: true, message: 'Ups! there is not Motorcycle for while!😁' }, status: :ok
@@ -14,7 +14,7 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def show
     if Motorcycle.exists?(params[:id])
-      @motorcycle=Motorcycle.find(params[:id])
+      @motorcycle = Motorcycle.find(params[:id])
       authorize! :read, @motorcycle
       render json: { success: true, motorcycle: @motorcycle }, status: :ok
     end
@@ -32,7 +32,7 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def destroy
     if Motorcycle.exists?(params[:id])
-      @motorcycle=Motorcycle.destroy(params[:id])
+      @motorcycle = Motorcycle.destroy(params[:id])
       authorize! :destroy, @motorcycle
       render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
       end
