@@ -26,6 +26,7 @@ RSpec.describe User, type: :model do
       user = User.new
       user.name = 'Gra'
       user.email = 'gracianomanuelhenrique@gmail.com'
+      user.password = 'MariaCangombe'
       expect(user).to be_valid
     end
   end
