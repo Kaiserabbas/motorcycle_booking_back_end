@@ -3,7 +3,7 @@ class AuthenticationController < ApplicationController
     user = User.find_by(name: params[:name])
     if user&.authenticate(params[:password])
       token = user.generate_jwt
-      render json: { token: }
+      render json: { token:  token }
     else
       head :unauthorized
     end
