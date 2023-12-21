@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       head :unauthorized
     end
   end
+
+  def root
+    render json: {wellcome_message:"BE WELLCOME AT YOUR BOOKING_MOTORCYCLE API 😍🥰😁🙏"}, status: :ok
+  end
 end
