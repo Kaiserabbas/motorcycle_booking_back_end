@@ -3,21 +3,21 @@ class ApplicationController < ActionController::Base
   after_action :destroy_pending_user_state
   skip_before_action :authorize_request, only: [:root]
   def root
-    render json: { wellcome_message:"BE WELLCOME AT YOUR BOOKING_MOTORCYCLE API 😍🥰😁🙏" }, status: :ok
+    render json: { wellcome_message: 'BE WELLCOME AT YOUR BOOKING_MOTORCYCLE API 😍🥰😁🙏' }, status: :ok
   end
 
   def current_user
-    user=session[:current_user]
+    session[:current_user]
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     render json: { error: true, message: 'You do not have the authorization!😁' }, status: :forbidden
   end
 
-  rescue_from ActiveRecord::RecordNotFound do |exception|
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
     render json: { error: true, message: 'Ups! Could not find element with the provided Id' }, status: :not_found
   end
-   
+
   private
 
   def authorize_request
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find(@decoded['id'])
       session[:current_user] = @current_user
     rescue JWT::DecodeError
-      render json: {error:true,message: 'Ups! you are not unauthorized 😁😁!'}, status: :unauthorized
+      render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :unauthorized
     end
   end
 

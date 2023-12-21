@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def admin?
-    admin=self.admin
+    admin
   end
 end

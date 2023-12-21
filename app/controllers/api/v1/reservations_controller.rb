@@ -1,10 +1,10 @@
 class Api::V1::ReservationsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+  skip_before_action :verify_authenticity_token, only: %i[create destroy]
   load_and_authorize_resource
 
   def index
     @reservations = Reservation.all
-    if @reservations.size > 0
+    if @reservations.size.positive?
       authorize! :read, @reservations
       render json: { success: true, data: @reservations }, status: :ok
     else
@@ -13,11 +13,11 @@ class Api::V1::ReservationsController < ApplicationController
   end
 
   def show
-    if Reservation.exists?(params[:id])
-      @reservation = Reservation.find(params[:id])
-      authorize! :read, @reservation
-      render json: { success: true, reservation: @reservation }, status: :ok
-    end
+    return unless Reservation.exists?(params[:id])
+
+    @reservation = Reservation.find(params[:id])
+    authorize! :read, @reservation
+    render json: { success: true, reservation: @reservation }, status: :ok
   end
 
   def create
@@ -33,11 +33,12 @@ class Api::V1::ReservationsController < ApplicationController
 
   def destroy
     if Reservation.exists?(params[:id])
-      @reservation=Reservation.destroy(params[:id])
+      @reservation = Reservation.destroy(params[:id])
       authorize! :destroy, @reservation
       render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
     else
-      render json: { error: true, message: 'Could not remove the reservation!, Please(🙏), ensure a valid ID' }, status: :unprocessable_entity
+      render json: { error: true, message: 'Could not remove the reservation!, Please(🙏), ensure a valid ID' },
+             status: :unprocessable_entity
     end
   end
 

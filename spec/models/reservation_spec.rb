@@ -23,7 +23,7 @@ RSpec.describe Reservation, type: :model do
 
   context 'with Valid params' do
     it 'Should save a new Reservation wit valid params' do
-      user = User.create(name: 'Gra', email: 'gra@gmail.com', password: "MadaraSama!", admin: true)
+      user = User.create(name: 'Gra', email: 'gra@gmail.com', password: 'MadaraSama!', admin: true)
 
       motorcycle = Motorcycle.new
       motorcycle.name = 'Vespa'
