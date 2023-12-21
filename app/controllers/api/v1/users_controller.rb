@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
 
     if @user.save
       token = @user.generate_jwt
-      render json: { token: token }, status: :created
+      render json: { token: }, status: :created
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -13,6 +13,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-   params.require(:user).permit(:name, :password, :email)
+    params.require(:user).permit(:name, :password, :email)
   end
 end
