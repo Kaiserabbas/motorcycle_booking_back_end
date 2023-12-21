@@ -4,7 +4,6 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       resources :reservations, default: { format: :json }, only: [:index, :show, :create, :destroy]
       resources :motorcycles, default: { format: :json }, only: [:index, :show, :create, :destroy]
-      post '/login', to: 'authentication#login'
     end
   end
   root "application#root", default: {format: :json}

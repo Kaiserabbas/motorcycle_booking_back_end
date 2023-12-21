@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def self.form_jwt(token)
     JWT.decode(token, Rails.application.secrets.secret_key_base)[0]['id']
   end
+
+  def admin?
+    admin=self.admin
+  end
 end

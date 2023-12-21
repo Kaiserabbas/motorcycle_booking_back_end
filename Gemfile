@@ -64,3 +64,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'faker'
 
 gem 'rack-cors', require: 'rack/cors'
+
+gem 'cancancan'

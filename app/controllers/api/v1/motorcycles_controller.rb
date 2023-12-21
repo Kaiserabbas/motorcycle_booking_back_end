@@ -1,26 +1,30 @@
 class Api::V1::MotorcyclesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+  load_and_authorize_resource
+
   def index
     @motorcycles = Motorcycle.all
+    authorize! :read, @motorcycles
     if @motorcycles.size>0
     render json: { success: true, data: @motorcycles }, status: :ok
     else
-      render json: { message: 'Ups! there is not Reservation!' }, status: :no_content
+      render json: { success: true, message: 'Ups! there is not Motorcycle for while!😁' }, status: :ok
     end
   end
 
   def show
     if Motorcycle.exists?(params[:id])
-      render json: { success: true, motorcycle: Motorcycle.find(params[:id]) }, status: :ok
-    else
-      render json: { error: true, message: 'Ups! there is not Motorcycle with the provided Id' }, status: :not_found
+      @motorcycle=Motorcycle.find(params[:id])
+      authorize! :read, @motorcycle
+      render json: { success: true, motorcycle: @motorcycle }, status: :ok
     end
   end
 
   def create
     motorcycle = Motorcycle.new(motorcycle_params)
-    motorcycle.user = current_user
+    authorize! :create, motorcycle
     if motorcycle.save
-      render json: { success: true, message: 'Created Successfully!' }, status: :created
+      render json: { success: true, message: 'Created Successfully!😁' }, status: :created
     else
       render json: { error: true, message: 'Ups! Could not Create the new Motorcycle' }, status: :unprocessable_entity
     end
@@ -28,10 +32,15 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def destroy
     if Motorcycle.exists?(params[:id])
-      Motorcycle.destroy(params[:id])
-      render json: { success: true, message: 'Removed Successfully!' }, status: :ok
-    else
-      render json: { error: true, message: 'Could not remove the Motorcycle!' }, status: :unprocessable_entity
-    end
+      @motorcycle=Motorcycle.destroy(params[:id])
+      authorize! :destroy, @motorcycle
+      render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
+      end
+  end
+
+  private
+
+  def motorcycle_params
+    params.require(:motorcycle).permit(:name, :color, :chassisNumber, :bookingPricePerHour, :brand, :model, :price, :imageLink )
   end
 end
