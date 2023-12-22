@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   after_action :destroy_pending_user_state
   skip_before_action :authorize_request, only: [:root]
   def root
-    render json: { wellcome_message: 'BE WELCOME AT YOUR BOOKING_MOTORCYCLE API 😍🥰😁🙏' }, status: :ok
+    render json: { welcome_message: 'Gear up, motorcycle enthusiasts! You have just stumbled upon the ultimate Motorcycle Booking API 🏁🏍️🛵🏍🚴' }, status: :ok
   end
 
   def current_user
