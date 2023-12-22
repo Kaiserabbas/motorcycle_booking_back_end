@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :authorize_request
-  after_action :destroy_pending_user_state
   skip_before_action :authorize_request, only: [:root]
   def root
     render json: { wellcome_message: 'BE WELLCOME AT YOUR BOOKING_MOTORCYCLE API 😍🥰😁🙏' }, status: :ok
@@ -21,8 +20,15 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize_request
-    header = request.headers['Authorization']
-    header = header.split.last if header
+    if request.headers['Authorization']
+      header = request.headers['Authorization']
+      header = header.split.last if header
+    else
+      if session[:current_user].token
+        header = session[:current_user].token
+      end
+    end
+
     begin
       @decoded = JWT.decode(header, Rails.application.secret_key_base)[0]
       @current_user = User.find(@decoded['id'])
@@ -30,10 +36,9 @@ class ApplicationController < ActionController::Base
     rescue JWT::DecodeError
       render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :unauthorized
     end
-  end
-
-  def destroy_pending_user_state
-    reset_session
-    cookies.clear
-  end
+  end  
+  # def destroy_pending_user_state
+  #   reset_session
+  #   cookies.clear
+  # end
 end
