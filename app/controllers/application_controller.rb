@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   after_action :destroy_pending_user_state
   skip_before_action :authorize_request, only: [:root]
   def root
-    render json: { wellcome_message: 'BE WELLCOME AT YOUR BOOKING_MOTORCYCLE API 😍🥰😁🙏' }, status: :ok
+    render json: { welcome_message: 'Gear up, motorcycle enthusiasts! You have just stumbled upon the ultimate Motorcycle Booking API 🏁🏍️🛵🏍🚴' }, status: :ok
   end
 
   def current_user
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordNotFound do |_exception|
-    render json: { error: true, message: 'Ups! Could not find element with the provided Id' }, status: :not_found
+    render json: { error: true, message: 'OOps! Could not find element with the provided Id' }, status: :not_found
   end
 
   private
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find(@decoded['id'])
       session[:current_user] = @current_user
     rescue JWT::DecodeError
-      render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :unauthorized
+      render json: { error: true, message: 'OOps! you are not unauthorized 😁😁!' }, status: :unauthorized
     end
   end
 
