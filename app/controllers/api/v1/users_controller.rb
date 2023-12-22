@@ -1,4 +1,7 @@
 class Api::V1::UsersController < ApplicationController
+  skip_before_action :authorize_request, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create]
+
   def create
     @user = User.new(user_params)
 
@@ -6,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
       token = @user.generate_jwt
       render json: { token: }, status: :created
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: true, message: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

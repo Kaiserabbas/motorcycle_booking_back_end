@@ -31,6 +31,7 @@ RSpec.describe Motorcycle, type: :model do
       motorcycle.brand = 'Vespa'
       motorcycle.bookingPricePerHour = 200
       motorcycle.price = 2000
+      motorcycle.imageLink = 'https://web.postman.co/workspace/My-Workspace~a2a266d4-85ab-41a6-8e2d-3c026a33a3fd/request/create?requestId=199726b5-2868-425c-a935-9c16771ec617'
       motorcycle.save
       expect(motorcycle).to be_valid
     end
