@@ -20,14 +20,14 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize_request
-    if request.headers['Authorization']
+    # if request.headers['Authorization']
       header = request.headers['Authorization']
       header = header.split.last if header
-    else
-      if session[:current_user].token
-        header = session[:current_user].token
-      end
-    end
+    # else
+      # if session[:current_user].token
+        # header = session[:current_user].token
+      # end
+    # end
 
     begin
       @decoded = JWT.decode(header, Rails.application.secret_key_base)[0]
@@ -37,8 +37,7 @@ class ApplicationController < ActionController::Base
       render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :unauthorized
     end
   end  
-  # def destroy_pending_user_state
-  #   reset_session
-  #   cookies.clear
-  # end
+  def destroy_pending_user_state
+    reset_session
+  end
 end

@@ -5,10 +5,13 @@ class Api::V1::AuthenticationController < ApplicationController
   def login  
       user = User.find_by(email: params[:user][:email])
       if user&.authenticate(params[:user][:password])
-        validate_token(user.token)
-        render json: { success: true, message: 'Login Successfully😁😁' }, status: :ok
+        if validate_token(user.token)
+        render json: { success: true, user: {id: user.id, name: user.name, email: user.email, admin: user.admin}, message: 'Login Successfully😁😁', token: user.token }, status: :ok
+        else
+          render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :ok
+        end
       else
-        render json: {error:true, message: "Ups! could not login! Check your  Email or Password!😁"}, status: :forbidden
+        render json: {error:true, message: "Ups! could not login! Check your  Email or Password!😁"}, status: :unauthorized
       end
   end
 
@@ -20,7 +23,7 @@ class Api::V1::AuthenticationController < ApplicationController
       @current_user = User.find(@decoded['id'])
       session[:current_user] = @current_user
     rescue JWT::DecodeError
-      render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :unauthorized
+      render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :ok
     end
   end
 end
