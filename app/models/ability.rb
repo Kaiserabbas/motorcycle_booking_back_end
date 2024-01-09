@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     return unless user.present?
+
     user ||= User.new
 
     if user.admin?

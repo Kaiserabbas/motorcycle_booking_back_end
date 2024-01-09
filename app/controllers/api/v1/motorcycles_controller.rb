@@ -1,7 +1,7 @@
 class Api::V1::MotorcyclesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create destroy]
   load_and_authorize_resource
-   before_action :set_motorcycle, only: [:show, :update, :destroy]
+  before_action :set_motorcycle, only: %i[show update destroy]
   def index
     @motorcycles = Motorcycle.all
     authorize! :read, @motorcycles
@@ -38,11 +38,12 @@ class Api::V1::MotorcyclesController < ApplicationController
     render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
   end
 
+
+  private
+
   def set_motorcycle
     @motorcycle = Motorcycle.find(params[:id])
   end
-
-  private
 
   def motorcycle_params
     params.require(:motorcycle).permit(:name, :color, :chassisNumber, :bookingPricePerHour, :brand, :model, :price, :imageLink, :description)

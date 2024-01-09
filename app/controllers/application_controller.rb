@@ -22,12 +22,12 @@ class ApplicationController < ActionController::Base
 
   def authorize_request
     # if request.headers['Authorization']
-      header = request.headers['Authorization']
-      header = header.split.last if header
+    header = request.headers['Authorization']
+    header = header.split.last if header
     # else
-      # if session[:current_user].token
-        # header = session[:current_user].token
-      # end
+    # if session[:current_user].token
+    # header = session[:current_user].token
+    # end
     # end
 
     begin
@@ -37,7 +37,8 @@ class ApplicationController < ActionController::Base
     rescue JWT::DecodeError
       render json: { error: true, message: 'OOps! you are not unauthorized 😁😁!' }, status: :unauthorized
     end
-  end  
+  end
+
   def destroy_pending_user_state
     reset_session
   end

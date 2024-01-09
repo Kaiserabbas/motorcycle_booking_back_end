@@ -3,7 +3,7 @@ class Api::V1::ReservationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @current_user=  User.find(session[:current_user].id)
+    @current_user = User.find(session[:current_user].id)
     @reservations = @current_user.reservations
     if @reservations.size.positive?
       authorize! :read, @reservations
