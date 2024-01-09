@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: Medical Appointments Wizard API
+  title: Motorcycle Appointments Wizard API
   version: v1
 security:
   - bearerAuth: []
@@ -55,14 +55,14 @@ paths:
                 - username
                 - password
 
-  "/api/v1/doctors":
+  "/api/v1/motorcycles":
     get:
-      summary: list doctors
+      summary: list motorcycles
       responses:
         '200':
           description: successful
     post:
-      summary: create doctor
+      summary: create motorcycle
       responses:
         '200':
           description: successful
@@ -85,7 +85,7 @@ paths:
                 - picture
                 - speciality
                 - address
-  "/api/v1/doctors/{id}":
+  "/api/v1/motorcycles/{id}":
     parameters:
       - name: id
         in: path
@@ -94,23 +94,23 @@ paths:
         schema:
           type: string
     get:
-      summary: show doctor
+      summary: show motorcycle
       responses:
         '200':
           description: successful
     delete:
-      summary: delete doctor
+      summary: delete motorcycle
       responses:
         '200':
           description: successful
-  "/api/v1/appointments":
+  "/api/v1/reservations":
     get:
-      summary: list appointments
+      summary: list reservations
       responses:
         '200':
           description: successful
     post:
-      summary: create appointment
+      summary: create reservation
       responses:
         '200':
           description: successful
@@ -128,10 +128,10 @@ paths:
                 city:
                   type: string
               required:
-                - doctor_id
-                - appointment_time
+                - motorcycle_id
+                - reservation_time
                 - city
-  "/api/v1/appointments/{id}":
+  "/api/v1/reservations/{id}":
     parameters:
       - name: id
         in: path
@@ -140,12 +140,12 @@ paths:
         schema:
           type: string
     get:
-      summary: show appointment
+      summary: show reservation
       responses:
         '200':
           description: successful
     delete:
-      summary: delete appointment
+      summary: delete reservation
       responses:
         '200':
           description: successful
@@ -154,7 +154,7 @@ servers:
   - url: https://{defaultHost}
     variables:
       defaultHost:
-        default: medical-appointments-booking-wizard.onrender.com
+        default: motorcyclebooking.onrender.com
 
 components:
   securitySchemes:
