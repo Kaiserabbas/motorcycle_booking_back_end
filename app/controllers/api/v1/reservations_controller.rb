@@ -3,7 +3,8 @@ class Api::V1::ReservationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @reservations = Reservation.all
+    @current_user=  User.find(session[:current_user].id)
+    @reservations = @current_user.reservations
     if @reservations.size.positive?
       authorize! :read, @reservations
       render json: { success: true, data: @reservations }, status: :ok
@@ -27,7 +28,7 @@ class Api::V1::ReservationsController < ApplicationController
     if reservation.save
       render json: { success: true, message: 'Created Successfully!😁' }, status: :created
     else
-      render json: { error: true, message: 'Ups! Could not Create the new Reservation' }, status: :unprocessable_entity
+      render json: { error: true, message: reservation.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

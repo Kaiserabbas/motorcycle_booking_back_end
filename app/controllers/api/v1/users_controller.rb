@@ -4,10 +4,10 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
-      token = @user.generate_jwt
-      render json: { token: }, status: :created
+      @user.token = @user.generate_jwt
+      @user.save
+      render json: { success:true,message:"created successfully, please keep safe your token 😁!", token:@user.token }, status: :created
     else
       render json: { error: true, message: @user.errors.full_messages }, status: :unprocessable_entity
     end
