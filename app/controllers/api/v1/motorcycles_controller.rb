@@ -22,11 +22,11 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def create
     motorcycle = Motorcycle.new(motorcycle_params)
-    authorize! :create, motorcycle
+    authorize! :create, @motorcycle
     if motorcycle.save
       render json: { success: true, message: 'Created Successfully!😁' }, status: :created
     else
-      render json: { error: true, message: 'Ups! Could not Create the new Motorcycle' }, status: :unprocessable_entity
+      render json: { error: true, message: motorcycle.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -41,6 +41,6 @@ class Api::V1::MotorcyclesController < ApplicationController
   private
 
   def motorcycle_params
-    params.require(:motorcycle).permit(:name, :color, :chassisNumber, :bookingPricePerHour, :brand, :model, :price, :imageLink)
+    params.require(:motorcycle).permit(:name, :color, :chassisNumber, :bookingPricePerHour, :brand, :model, :price, :imageLink, :description)
   end
 end

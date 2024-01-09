@@ -3,10 +3,13 @@ class Ability
 
   def initialize(user)
     return unless user.present?
+    user ||= User.new
 
-    can :read, :all
-    return unless user.admin?
-
-    can :manage, :all
+    if user.admin?
+      can :manage, :all
+    else
+      can :create, Reservation
+      can :read, :all
+    end
   end
 end
