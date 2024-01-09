@@ -15,8 +15,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: gra 
+  username: motorcycle_booking_db_user
+  password: QdpIGpu7cQh87FLfUsmizrFnko05bEJa 
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: motorcycle_booking_back_end_production
-  username: motorcycle_booking_back_end
-  password: <%= ENV["MOTORCYCLE_BOOKING_BACK_END_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
