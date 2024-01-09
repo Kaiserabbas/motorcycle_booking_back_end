@@ -3,9 +3,8 @@ class User < ApplicationRecord
   has_many :motorcycles, through: :reservations
 
   validates_presence_of :name, :email
-  validates :email, uniqueness:true
+  validates :email, uniqueness: true
   validates :password, presence: true, length: { minimum: 6, maximum: 12 }
-
 
   has_secure_password
 
