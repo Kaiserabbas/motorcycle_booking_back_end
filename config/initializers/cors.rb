@@ -21,7 +21,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
      end
 
      allow do
-       origins 'http://192.168.43.117:3001' # Update this with the actual origin of your React app
+       origins 'https://motorcycle-booking-front-end.vercel.app/' # Update this with the actual origin of your React app
        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: false
      end
   end
