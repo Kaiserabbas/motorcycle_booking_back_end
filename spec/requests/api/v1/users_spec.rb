@@ -5,6 +5,7 @@ RSpec.describe 'api/v1/users', type: :request do
     {
       user: {
         name: 'test_user',
+        email: 'test_user@gmail.com',
         password: 'password'
       }
     }
@@ -18,8 +19,8 @@ RSpec.describe 'api/v1/users', type: :request do
         properties: {
           user: {
             type: :object,
-            properties: { name: { type: :string }, password: { type: :string } },
-            required: %w[name password]
+            properties: { name: { type: :string }, email: { type: :string }, password: { type: :string } },
+            required: %w[name email password]
           }
         },
         required: ['user']
@@ -40,7 +41,7 @@ RSpec.describe 'api/v1/users', type: :request do
         end
       end
       response '422', 'unprocessable entity' do
-        let(:user_params) { { name: nil, password: nil } }
+        let(:user_params) { { name: nil, email: nil, password: nil } }
         run_test!
       end
     end

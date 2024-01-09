@@ -22,11 +22,11 @@ RSpec.describe User, type: :model do
   end
 
   context 'with Valid params' do
-    it 'Should save a new user wit valid params' do
+    it 'Should save a new user with valid params' do
       user = User.new
       user.name = 'Gra'
-      user.email = 'gracianomanuelhenrique@gmail.com'
-      user.password = 'MariaCangombe'
+      user.email = 'gracianomanuelhenriqueprata@gmail.com'
+      user.password = 'MariaCangomb'
       expect(user).to be_valid
     end
   end
