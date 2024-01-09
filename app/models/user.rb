@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :password, presence: true, length: { minimum: 6, maximum: 12 }
 
-
   has_secure_password
 
   def generate_jwt

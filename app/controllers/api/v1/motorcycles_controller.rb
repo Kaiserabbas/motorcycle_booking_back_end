@@ -38,7 +38,6 @@ class Api::V1::MotorcyclesController < ApplicationController
     render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
   end
 
-
   private
 
   def set_motorcycle
