@@ -9,11 +9,11 @@ class User < ApplicationRecord
   has_secure_password
 
   def generate_jwt
-    JWT.encode({ id:, exp: 31.days.from_now.to_i }, Rails.application.secrets.secret_key_base)
+    JWT.encode({ id: id, exp: 31.days.from_now.to_i }, Rails.application.secret_key_base)
   end
 
-  def self.form_jwt(token)
-    JWT.decode(token, Rails.application.secrets.secret_key_base)[0]['id']
+  def self.from_jwt(token)
+    JWT.decode(token, Rails.application.secret_key_base)[0]['id']
   end
 
   def admin?
