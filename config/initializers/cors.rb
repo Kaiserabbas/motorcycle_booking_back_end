@@ -16,12 +16,7 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
      allow do
-       origins 'http://localhost:3001' # Update this with the actual origin of your React app
-       resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: false
-     end
-
-     allow do
        origins 'https://motorcycle-booking-front-end-bsq5-git-dev-grahenrique.vercel.app' # Update this with the actual origin of your React app
-       resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: false
+       resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
      end
   end
