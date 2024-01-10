@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_secure_password
 
   def generate_jwt
-    JWT.encode({ id:, exp: 31.days.from_now.to_i }, Rails.application.secret_key_base)
+    JWT.encode({ id:id, exp: 31.days.from_now.to_i }, Rails.application.secret_key_base)
   end
 
   def self.from_jwt(token)
