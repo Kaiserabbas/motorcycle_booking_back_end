@@ -25,6 +25,10 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
+
+https://github.com/Kaiserabbas/motorcycle_booking_back_end/assets/123939543/50347bc7-004f-48cd-b7b5-e9753a52e175
+
+
 # 📖 Motorcycle Booking Back-end <a name="about-project"></a>
 
 **Motorcycle Booking Back-end** This repository contains the Rails back-end API for the "Motorcycle Booking" project. The API serves as the foundation for user authentication, motorcycle management, reservation handling, and related functionalities. It utilizes PostgreSQL as the database and is designed to be a robust and secure backend system. The API exposes endpoints for user login, motorcycle listing, motorcycle details, reservation creation, and user reservation listing. Additionally, it implements features such as marking a motorcycle as removed and comprehensive documentation for seamless integration with the front-end.
