@@ -12,7 +12,7 @@ class Api::V1::AuthenticationController < ApplicationController
         render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :ok
       end
     else
-      render json: { error: true, message: 'Ups! could not login! Check your  Email or Password!😁' }, status: :unauthorized
+      render json: { error: true, message: 'Ups! could not login! Check your Email or Password!😁' }, status: :unauthorized
     end
   end
 
@@ -22,7 +22,8 @@ class Api::V1::AuthenticationController < ApplicationController
     @decoded = JWT.decode(token, Rails.application.secret_key_base)[0]
     @current_user = User.find(@decoded['id'])
     session[:current_user] = @current_user
+    true
   rescue JWT::DecodeError
-    render json: { error: true, message: 'Ups! you are not unauthorized 😁😁!' }, status: :ok
+    false
   end
 end
