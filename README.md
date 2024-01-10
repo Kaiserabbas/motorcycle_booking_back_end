@@ -48,7 +48,7 @@ Ruby on Rails, Visual Studio Code, WSL
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo Link](https://motobookingapp.onrender.com)
-
+- [Kanban Board](https://github.com/users/Kaiserabbas/projects/6/views/1)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 💻 Getting Started <a name="getting-started"></a>
