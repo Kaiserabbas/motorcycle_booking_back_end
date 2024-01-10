@@ -23,11 +23,9 @@ class ApplicationController < ActionController::Base
   def authorize_request
     header = request.headers['Authorization']
     header = header.split.last if header
-  
-    unless header
-      header = session[:current_user].token if session[:current_user].present? && session[:current_user].token.present?
-    end
-  
+
+    header = session[:current_user].token if !header && (session[:current_user].present? && session[:current_user].token.present?)
+
     begin
       @decoded = JWT.decode(header, Rails.application.secret_key_base)[0]
       @current_user = User.find(@decoded['id'])
