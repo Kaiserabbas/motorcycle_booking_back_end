@@ -32,17 +32,15 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def destroy
     @motorcycle = Motorcycle.find_by(id: params[:id])
-  
+
     if @motorcycle
       if @motorcycle.booked_for_reservation?
         render json: { error: true, message: 'Motorcycle is booked for a reservation, cannot be deleted.' }, status: :unprocessable_entity
+      elsif @motorcycle.destroy
+        authorize! :destroy, @motorcycle
+        render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
       else
-        if @motorcycle.destroy
-          authorize! :destroy, @motorcycle
-          render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
-        else
-          render json: { error: true, message: 'Failed to remove the motorcycle.' }, status: :internal_server_error
-        end
+        render json: { error: true, message: 'Failed to remove the motorcycle.' }, status: :internal_server_error
       end
     else
       render json: { error: true, message: 'Motorcycle with the provided Id does not exist.' }, status: :not_found
