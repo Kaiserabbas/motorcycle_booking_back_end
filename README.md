@@ -11,6 +11,7 @@
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
+  - [🧗‍♂️ Kanban Board](#kanban-board)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -52,6 +53,8 @@ Ruby on Rails, Visual Studio Code, WSL
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo Link](https://motobookingapp.onrender.com)
+
+## 🧗‍♂️ Kanban Board <a name="kanban-board"></a>
 - [Kanban Board](https://github.com/users/Kaiserabbas/projects/6/views/1)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
