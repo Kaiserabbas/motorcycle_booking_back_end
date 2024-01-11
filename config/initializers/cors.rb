@@ -15,8 +15,13 @@
 #   end
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-     allow do
-       origins 'https://motobookingapp.onrender.com' # Update this with the actual origin of your React app
-       resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
-     end
+  allow do
+    origins 'https://motobookingapp.onrender.com' # For this (<---)  React app consume this project API points 
+    resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
   end
+
+  allow do
+    origins 'http://localhost:3001' # for respond to your local machine
+    resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
+  end
+end

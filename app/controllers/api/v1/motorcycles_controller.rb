@@ -1,7 +1,7 @@
 class Api::V1::MotorcyclesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create destroy]
   load_and_authorize_resource
-  before_action :set_motorcycle, only: %i[show update destroy]
+  before_action :set_motorcycle, only: %i[show destroy]
   def index
     @motorcycles = Motorcycle.all
     authorize! :read, @motorcycles
@@ -31,11 +31,20 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def destroy
-    return unless Motorcycle.exists?(params[:id])
+    @motorcycle = Motorcycle.find_by(id: params[:id])
 
-    @motorcycle = Motorcycle.destroy(params[:id])
-    authorize! :destroy, @motorcycle
-    render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
+    if @motorcycle
+      if @motorcycle.booked_for_reservation?
+        render json: { error: true, message: 'can not delete a reserved Motorcycle!' }, status: :unprocessable_entity
+      elsif @motorcycle.destroy
+        authorize! :destroy, @motorcycle
+        render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
+      else
+        render json: { error: true, message: 'Failed to remove the motorcycle.' }, status: :internal_server_error
+      end
+    else
+      render json: { error: true, message: 'Motorcycle with the provided Id does not exist.' }, status: :not_found
+    end
   end
 
   private
