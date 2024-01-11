@@ -35,7 +35,7 @@ class Api::V1::MotorcyclesController < ApplicationController
 
     if @motorcycle
       if @motorcycle.booked_for_reservation?
-        render json: { error: true, message: 'Motorcycle is booked for a reservation, cannot be deleted.' }, status: :unprocessable_entity
+        render json: { error: true, message: 'can not delete a reserved Motorcycle!' }, status: :unprocessable_entity
       elsif @motorcycle.destroy
         authorize! :destroy, @motorcycle
         render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
