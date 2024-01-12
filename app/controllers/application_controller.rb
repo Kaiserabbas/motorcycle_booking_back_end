@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |_exception|
-    render json: { error: true, message: 'You do not have the authorization!😁' }, status: :forbidden
+    render json: { error: true, message: 'You do not have the authorization!😁' }, status: :unauthorized
   end
 
   rescue_from ActiveRecord::RecordNotFound do |_exception|
