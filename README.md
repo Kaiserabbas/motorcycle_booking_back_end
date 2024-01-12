@@ -49,6 +49,7 @@ Ruby on Rails, Visual Studio Code, WSL
 - **Motorcycle Management**
 - **Reservation System**
 - **API Documentation**
+- **Add devise**
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
