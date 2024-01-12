@@ -38,7 +38,7 @@ class Api::V1::ReservationsController < ApplicationController
       authorize! :destroy, @reservation
       render json: { success: true, message: 'Removed Successfully!😁' }, status: :ok
     else
-      render json: { error: true, message: 'Could not remove the reservation!, Please(🙏), ensure a valid ID' },
+      render json: { error: true, message: 'Could not remove this reservation!, Please(🙏), ensure a valid ID' },
              status: :unprocessable_entity
     end
   end

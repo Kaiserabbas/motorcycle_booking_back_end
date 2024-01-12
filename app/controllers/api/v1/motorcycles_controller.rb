@@ -8,7 +8,7 @@ class Api::V1::MotorcyclesController < ApplicationController
     if @motorcycles.size.positive?
       render json: { success: true, data: @motorcycles }, status: :ok
     else
-      render json: { success: true, message: 'Ups! there is not Motorcycle for while!😁' }, status: :ok
+      render json: { success: true, message: 'Upps! there is not Motorcycle for while!😁' }, status: :ok
     end
   end
 
