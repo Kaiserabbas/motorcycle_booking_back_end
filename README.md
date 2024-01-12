@@ -78,6 +78,9 @@ In order to use this project.. Clone this repository to your desired folder by p
 
   Ruby on Rails
   Git
+  PostGreSQL
+  Node
+  VScode or other...
 
 ### Install <a name="install"></a>
 
