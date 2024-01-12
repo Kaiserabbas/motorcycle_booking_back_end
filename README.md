@@ -41,7 +41,6 @@ Ruby on Rails, Visual Studio Code, WSL
 
 - **Ruby on Rails**
 - **PostgreSQL**
-- **WSL**
 
 ### Key Features <a name="key-features"></a>
 
@@ -53,7 +52,8 @@ Ruby on Rails, Visual Studio Code, WSL
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://motobookingapp.onrender.com)
+- [FrontEnd](https://motobookingapp.onrender.com)
+- [BackEnd](https://motorcyclebooking.onrender.com)
 
 ## 🧗‍♂️ Kanban Board <a name="kanban-board"></a>
 - [Kanban Board](https://github.com/users/Kaiserabbas/projects/6/views/1)
